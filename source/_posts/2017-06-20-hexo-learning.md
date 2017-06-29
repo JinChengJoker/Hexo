@@ -15,7 +15,9 @@ Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（�
 
 ## 2、安装必要程序
 
+[Git](https://git-scm.com/download/win) - 在官网下载安装包安装
 [Node.js](https://nodejs.org) - 在官网下载安装包安装
+
 验证安装成功：
 
 ```
@@ -24,27 +26,82 @@ $ node -v
 
 ## 3、创建 Github 仓库
 
-由于需要部署到 Github，所以先在 Github 创建一个仓库，这个仓库用来存放 hexo 为我们生成的静态文件。
-注意：这个仓库名需要与你的 Github 账户名一致，比如我的账户名是 JinChengJoker，那么则需要创建一个名为 JinChengJoker.github.io 的仓库。
+由于需要部署到 Github，所以先在 Github 创建一个仓库，这个仓库用来存放 hexo 为我们生成的静态文件。这个仓库名需要与自己的 Github 账户名一致，比如我的账户名是 JinChengJoker，那么则需要创建一个名为 JinChengJoker.github.io 的仓库。
+同时考虑到后面时间长了，可能会存在更换电脑的情况，所以再创建一个仓库 Hexo，这个仓库用来存放 hexo 的原始文件，便于管理。遇到更换电脑的情况，只需要克隆这个仓库到新电脑，npm install 之后就可以继续更新博客了。
+ps：其实也可以[用 git 分支的方法实现](https://www.zhihu.com/question/21193762)，原理相同，但是我觉两个仓库更加清晰一些，所以采用此方法。
 
 ## 4、克隆 Github 仓库
 
-以我的仓库名为例：
+我们只需要克隆 Hexo 仓库到本地，另一个仓库不需要管，后面 Hexo 会自动部署。
 
 ```
-$ git clone git@github.com:JinChengJoker/JinChengJoker.github.io.git
+$ git clone https://github.com/JinChengJoker/Hexo.git
 ```
 
-考虑到后面时间长了，会存在不在同一台电脑或者更换电脑的情况，所以这里先克隆到本地。
-这里的思路是 master 分支用来存放 hexo 生成的静态文件，再创建一个 hexo 分支且设置为默认分支，用于存放 hexo 的原始文件。
-这样做的好处是，以后遇到更换电脑的情况，只要在新电脑上 clone hexo 分支，就可以基本无缝迁移了。
+## 5、Hexo 快速搭建博客
 
-## 5、安装 Hexo
-
-安装完必要程序后，用npm（随同Node.js一起安装的包管理工具）安装 Hexo。
+用 npm（随同Node.js一起安装的包管理工具）安装 Hexo。
 
 ```
+$ cd Hexo
 $ npm install -g hexo-cli
+$ hexo init
+$ npm install
 ```
 
-未完，待续。
+生成静态页面：
+
+```
+$ hexo g
+```
+
+启动服务器：
+
+```
+$ hexo s
+```
+
+在浏览器访问 http://localhost:4000/ 就可以看到博客已经基本搭建完成。
+
+新建一篇文章：
+
+```
+$ hexo new test
+```
+
+在 `source/_posts` 下会生成一个 test.md 的文件，在这个文件里写文章，写完之后保存。
+
+```
+$ hexo clean    // 清除缓存文件 (db.json) 和已生成的静态文件夹 (public)。
+$ hexo g
+$ hexo s
+```
+
+重新访问 http://localhost:4000/ ，就可以看到刚才新建的文章。
+
+## 6、部署到 Github
+
+安装 hexo-deployer-git，它会帮我们把博客部署到Github。
+
+```
+$ npm install hexo-deployer-git --save
+```
+
+修改 `_config.yml` 配置文件中的 deploy：
+
+```
+deploy:
+  type: git
+  repo: <repository url>
+  branch: [branch]
+```
+
+repo 为之前创建的跟账户名相同的 Github 仓库地址，branch 为 master。配置完成之后保存。
+
+自动部署：
+
+```
+$ hexo d
+```
+
+在浏览器访问 https://jinchengjoker.github.io/ ，就可以看到博客基本已经部署成功了。
