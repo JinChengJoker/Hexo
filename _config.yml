@@ -5,7 +5,7 @@
 # Site
 title: JinCheng's Blog
 subtitle:
-description: 胡编一通，乱写一气
+description: FE & UI 从入门到不放弃
 author: JinCheng
 language: zh-Hans
 timezone:
@@ -69,5 +69,5 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/JinChengJoker/JinChengJoker.github.io.git
+  repo: git@github.com:JinChengJoker/JinChengJoker.github.io.git
   branch: master
