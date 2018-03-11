@@ -35,7 +35,7 @@ ps：其实也可以[用 git 分支的方法实现](https://www.zhihu.com/questi
 我们只需要克隆 Hexo 仓库到本地，另一个仓库不需要管，后面 Hexo 会自动部署。
 
 ```
-$ git clone https://github.com/JinChengJoker/Hexo.git
+$ git clone git@github.com:JinChengJoker/Hexo.git
 ```
 
 ## Hexo 快速搭建博客
