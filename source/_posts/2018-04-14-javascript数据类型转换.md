@@ -58,7 +58,7 @@ date: 2018-04-14 00:27:05
 
 ### 加空字符串方法
 
-null 和 undefined 可以用此方法转为 string，其它结果和上面的方法一致
+null 和 undefined 可以用此方法转为 string，其它结果和 `toString()` 方法一致
 
 ```
 null + ''  // "null"
@@ -124,7 +124,7 @@ undefined + ''  // "undefined"
 
 ### 两次取反法 !!
 
-*结果和上面的方法一致*
+结果和全局方法 `Boolean()` 一致
 
 ```
 !! 0  // false
@@ -201,7 +201,7 @@ undefined + ''  // "undefined"
 
 ### 减去 0 方法
 
-*结果与全局方法 `Number()` 一致*
+结果与全局方法 `Number()` 一致
 
 ```
 '1' - 0  // 1
