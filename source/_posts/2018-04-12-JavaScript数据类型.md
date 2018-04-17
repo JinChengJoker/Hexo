@@ -1,5 +1,5 @@
 ---
-title: JavaScript的一些笔记
+title: JavaScript 数据类型
 date: 2018-04-12 22:44:04
 ---
 
@@ -17,6 +17,34 @@ date: 2018-04-12 22:44:04
 | 二进制 | 以 0b 开头 | 0b11 |
 | 八进制 | 以 0 开头 | 011 |
 | 十六进制 | 以 0x 开头 | 0x11 |
+
+### String
+
+- 空字符串： `''`
+
+- 非空字符串： `'abc'` `' '`
+
+- 多行字符串：
+    ```javascript
+    // 无回车符
+    var s = '123' + 
+            '456'
+    s.length  // 6
+
+    // 无回车符
+    var s = '123\
+    456'
+    s.length  // 6
+
+    // 包含一个回车符
+    var s = `123
+    456`
+    s.length  // 7
+    ```
+
+### Boolean
+
+只有两个值：true 和 false
 
 ### null 和 undefined
 

@@ -1,5 +1,5 @@
 ---
-title: JavaScript数据类型转换
+title: JavaScript 数据类型转换
 date: 2018-04-14 00:27:05
 ---
 
