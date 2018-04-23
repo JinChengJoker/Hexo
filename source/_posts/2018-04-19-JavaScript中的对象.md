@@ -3,40 +3,20 @@ title: JavaScript 中的对象
 date: 2018-04-19 21:34:49
 ---
 
-## 全局对象 window
-
 ECMAScript 规定全局对象叫做 global，但是浏览器把 window 作为全局对象（浏览器先存在的）。
 
 window 有很多属性，这些属性就是全局变量，可供调用。大致分为两种：
 
-- ECMAScript 规定的
-    - global.Number
-    - global.String
-    - global.Boolean
-    - global.Object
-    - global.parseInt
-    - global.parseFloat
-    - ...
+- ECMAScript 规定的 `Number`、`String`、`Boolean`、`Object` ...
+- 浏览器自己添加的 `alert`、`prompt`、`comfirm`、`console` ...
 
-- 浏览器自己添加的
-    - window.alert
-    - window.prompt
-    - window.comfirm
-    - window.console.log
-    - window.document
-    - window.document.createElement
-    - window.document.getElementById
-    - ...
+## Number 对象
 
+`Number` 对象是数值对应的包装对象。
 
-## 全局函数 && 包装对象
-
-### Number 对象
-
-以 `Number()` 为例，一般有两种用法：
+`Number()` 可以作为工具函数使用，也可以作为构造函数使用（即可以使用new命令）：
 
 - `Number('1')` 尝试把任意值变为数值
-
 - `var n = new Number(1)` 把数值 1 包装成一个对象
 
 那么为什么要把 1 包装成一个对象？
@@ -90,28 +70,42 @@ n.a  // 返回的值？
 
 更多详细参考：[阮一峰《JavaScript 标准参考教程》- Number 对象](http://javascript.ruanyifeng.com/stdlib/number.html)
 
-### String 对象
+## String 对象
 
-与 `Number` 对象类似。
+与 `Number` 对象类似，`String` 对象是字符串对应的包装对象。
+
+`String()` 可以作为工具函数使用，也可以作为构造函数使用。
 
 更多详细参考：[阮一峰《JavaScript 标准参考教程》- String 对象](http://javascript.ruanyifeng.com/stdlib/string.html)
 
-### Boolean 对象
+## Boolean 对象
+
+与 `Number` 对象类似，`Boolean` 对象是布尔值对应的包装对象。
+
+`Boolean()` 可以作为工具函数使用，也可以作为构造函数使用。
 
 讲一个笑话：
 
 ```javascript
 var bool = new Boolean(false)
 if(bool) {
-    console.log("js is amazing '◡'")
+    console.log("js is amazing :)")
 }
 ```
 
 更多详细参考：[阮一峰《JavaScript 标准参考教程》- Boolean 对象](http://javascript.ruanyifeng.com/stdlib/wrapper.html#toc6)
 
-### Object 对象
+## Object 对象
 
-一般声明对象的方式有：
+`Object()` 当作工具函数使用，将任意值转为对象：
+
+- 如果参数是空、undefined 或 null，返回一个空对象
+- 如果参数是 number、string 或 boolean 值，返回对应的包装对象
+- 如果参数是一个对象，它总是返回该对象
+
+`Object()` 也可以作为构造函数使用，用法与工具函数用法几乎一模一样。
+
+例如直接通过它来生成新对象：
 
 ```javascript
 var o1 = {}
@@ -119,6 +113,32 @@ var o2 = new Object()
 o1 === o2  // false
 ```
 
-`o1` 和 `o2` 基本没有区别，只是在 Stack 中存的 Heap 地址不同。
+`o1` 和 `o2` 基本没有区别，都是空对象，只是在 Stack 中存的 Heap 地址不同。
 
 更多详细参考：[阮一峰《JavaScript 标准参考教程》- Object 对象](http://javascript.ruanyifeng.com/stdlib/object.html)
+
+## Array 对象
+
+`Array()` 当作工具函数和构造函数的用法几乎一摸一样，可以用它生成新的 Array 对象。
+
+**但是 `Array()` 有一个巨大的缺陷，就是不同的参数，会导致它的行为不一致。**
+
+例如：
+
+```javascript
+var a = new Array(3)  // 声明一个长度为 3 的数组，但没有任何元素，只有 length 属性
+a  // []
+a.length  // 3
+'0' in a  // false
+
+var b = new Array(3, 3)  // 声明一个长度为 2 的数组 [3, 3]
+b  // [3, 3]
+```
+
+**因此，不建议使用它生成新数组，直接使用数组字面量是更好的做法。**
+
+```javascript
+var a = [1, 2, 3]
+```
+
+更多详细参考：[阮一峰《JavaScript 标准参考教程》- Array 对象](http://javascript.ruanyifeng.com/stdlib/array.html)
