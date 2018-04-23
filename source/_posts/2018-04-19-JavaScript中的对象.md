@@ -142,3 +142,12 @@ var a = [1, 2, 3]
 ```
 
 更多详细参考：[阮一峰《JavaScript 标准参考教程》- Array 对象](http://javascript.ruanyifeng.com/stdlib/array.html)
+
+## 简单总结
+
+- `Number()`、`String()`、`Boolean()`  
+    不加 `new` 就是当做数据类型转换工具函数使用，返回的是基本类型的值。  
+    加 `new` 就是当做构造函数使用，返回的是对应类型的包装对象。
+
+- `Object()`、`Array()`  
+    加不加 `new` 都一样，返回的都是对象。
